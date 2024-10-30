@@ -1,4 +1,6 @@
-import React, { Suspense, useState } from "react";
+import React, { Suspense } from "react";
+import Loading from "../loading";
+import { notFound } from "next/navigation";
 
 interface PageProps {
   params: {
@@ -6,16 +8,25 @@ interface PageProps {
   };
 }
 
-async function page({ params }: PageProps) {
-  const { slug } = params;
+async function fetchPost(slug: string): Promise<string | null> {
+  //   await new Promise<void>((resolve) => setTimeout(resolve, 2000));
+  const validSlugs = ["dude", "hello-world", "example"];
+  return validSlugs.includes(slug) ? slug : null;
+}
 
-  await new Promise((resolve) => setTimeout(resolve, 500));
+export default async function Page({
+  params,
+}: PageProps): Promise<JSX.Element> {
+  const { slug } = params;
+  const post = await fetchPost(slug);
+
+  if (!post) {
+    notFound();
+  }
 
   return (
     <div>
-      <h1>Blog Post: {slug}</h1>
+      <h1>Blog Post: {post}</h1>
     </div>
   );
 }
-
-export default page;
