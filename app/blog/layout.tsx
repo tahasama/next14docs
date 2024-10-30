@@ -5,9 +5,7 @@ export default function blogLayout({
 }) {
   return (
     <section>
-      {/* Include shared UI here e.g. a header or sidebar */}
       <nav>Nav Layout</nav>
-
       {children}
     </section>
   );
