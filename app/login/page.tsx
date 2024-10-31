@@ -4,6 +4,7 @@ import { redirect, useRouter } from "next/navigation";
 import { useAuth } from "../provider/AuthProvider";
 import { handleLogin } from "./actions";
 import { useActionState, useEffect } from "react";
+import { LuLoader2 } from "react-icons/lu";
 
 export default function LoginPage() {
   const { setIsLoggedIn } = useAuth();
@@ -11,7 +12,10 @@ export default function LoginPage() {
   const initialState = {
     message: "",
   };
-  const [state, formAction] = useActionState(handleLogin, initialState);
+  const [state, formAction, ispending] = useActionState(
+    handleLogin,
+    initialState
+  );
 
   useEffect(() => {
     state.message === "isLoggedIn" &&
@@ -49,12 +53,21 @@ export default function LoginPage() {
           required
           className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:border-blue-500"
         />
-        <button
-          type="submit"
-          className="w-full py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors font-semibold"
-        >
-          Login
-        </button>
+
+        {!ispending ? (
+          <button
+            type="submit"
+            className="w-full py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors font-semibold"
+          >
+            Login
+          </button>
+        ) : (
+          <p className="flex justify-center">
+            <span className="animate-spin mx-auto">
+              <LuLoader2 size={20} />
+            </span>
+          </p>
+        )}
       </form>
     </div>
   );
