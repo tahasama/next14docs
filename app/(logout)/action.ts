@@ -11,8 +11,8 @@ export const logout = async (statusx:any) => {
     });
     if (response.ok) {
      (await cookies()).delete(  "authToken");
-    //   return { message: 'isLoggedOut' }
-      redirect('/login')
+      return { message: 'isLoggedOut' }
+      
 
     } else {
       const { error } = await response.json();

@@ -8,24 +8,30 @@ import { cookies } from "next/headers";
 import { useAuth } from "../provider/AuthProvider";
 
 const Logout = () => {
-  const { setIsLoggedIn } = useAuth();
+  const { setIsLoggedIn, isLoggedIn } = useAuth();
+
   const initialState = {
     message: "isLoggedIn",
   };
   const [state, formAction] = useActionState(logout, initialState);
 
-  // useEffect(() => {
-  //   state.message !== "isLoggedIn" && setIsLoggedIn(false);
-  //   redirect("login");
-  //   return () => {};
-  // }, [state.message]);
+  useEffect(() => {
+    state.message !== "isLoggedIn" &&
+      (setIsLoggedIn(false),
+      localStorage.setItem("isLoggedIn", "false"),
+      redirect("login"));
+    return () => {};
+  }, [state.message]);
 
   return (
-    <>
-      <form action={formAction}>
-        <button type="submit">Logout</button>
-      </form>
-    </>
+    <form action={formAction}>
+      <button
+        type="submit"
+        className="block w-full text-start px-4 py-2 text-sm text-gray-400 hover:bg-gray-700 transition ease-in-out delay-50 rounded-md"
+      >
+        Logout
+      </button>
+    </form>
   );
 };
 

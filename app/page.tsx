@@ -2,28 +2,9 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-screen  text-gray-800 p-8 pb-20 gap-6 sm:p-10 font-[family-name:var(--font-geist-sans)]">
+    <div className="grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-[calc(100vh-28px)]  text-gray-800 p-8 pb-20 gap-6 sm:p-10 font-[family-name:var(--font-geist-sans)]">
       <header className="flex flex-col items-center text-center space-y-4">
         <h1 className="text-4xl font-bold text-gray-700">My Website</h1>
-        <nav>
-          <ul className="flex gap-8 text-lg text-gray-400">
-            <li>
-              <a href="#home" className="hover:text-gray-700">
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="#about" className="hover:text-gray-700">
-                About
-              </a>
-            </li>
-            <li>
-              <a href="#contact" className="hover:text-gray-700">
-                Contact
-              </a>
-            </li>
-          </ul>
-        </nav>
       </header>
 
       <main className="space-y-6 text-center max-w-2xl border-2 border-slate-700 border-b-slate-600  rounded-lg p-4">

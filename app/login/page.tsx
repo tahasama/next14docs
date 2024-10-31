@@ -7,7 +7,6 @@ import { useActionState, useEffect } from "react";
 
 export default function LoginPage() {
   const { setIsLoggedIn } = useAuth();
-  const router = useRouter();
 
   const initialState = {
     message: "",
@@ -15,7 +14,10 @@ export default function LoginPage() {
   const [state, formAction] = useActionState(handleLogin, initialState);
 
   useEffect(() => {
-    state.message === "isLoggedIn" && (setIsLoggedIn(true), redirect("/blog"));
+    state.message === "isLoggedIn" &&
+      (setIsLoggedIn(true),
+      localStorage.setItem("isLoggedIn", "true"),
+      redirect("/blog"));
 
     return () => {};
   }, [state.message]);

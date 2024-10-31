@@ -7,6 +7,8 @@ interface Post {
 }
 
 async function fetchPosts(): Promise<Post[]> {
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+
   const response = await fetch("http://localhost:3000/api/posts");
   if (!response.ok) {
     throw new Error("Failed to fetch posts");
@@ -41,7 +43,7 @@ const PostsComponent: React.FC = async () => {
   };
 
   return (
-    <div className="bg-gray-900 text-white p-6 rounded-lg  mx-auto">
+    <div className="bg-gray-900 text-white p-6 rounded-lg mx-auto min-h-[calc(100vh-28px)]">
       <h1 className="text-2xl font-bold text-center mb-4">Posts</h1>
       <ul className="list-none p-0">
         {posts.map((post) => (

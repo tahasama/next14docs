@@ -32,7 +32,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AuthProvider>
-          <Nav />
+          <div className="w-full grid place-items-center bg-slate-900">
+            <Nav />
+          </div>
           {children}
         </AuthProvider>
       </body>
