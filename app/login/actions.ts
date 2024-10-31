@@ -21,9 +21,9 @@ export const handleLogin = async (prevState: any,formData: FormData) => {
     // revalidatePath("/blog");
 
     if (!response.ok) {
-      // const errorData = await response.json();
+      const {error} = await response.json();
       console.error("Error login user");
-      return {message:"Error login user"};
+      return {message:error};
     } else {
       const ccc = (await cookies()).set("authToken", "Success");
       redirect("/blog");

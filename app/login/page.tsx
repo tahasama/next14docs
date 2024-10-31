@@ -1,14 +1,13 @@
 "use client";
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
-import { useFormState } from "react-dom";
+
 import { handleLogin } from "./actions";
+import { useActionState } from "react";
 
 export default function LoginPage() {
   const initialState = {
     message: "",
   };
-  const [state, formAction] = useFormState(handleLogin, initialState);
+  const [state, formAction] = useActionState(handleLogin, initialState);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
@@ -17,7 +16,12 @@ export default function LoginPage() {
         className="space-y-6 w-full max-w-md p-8 bg-gray-800 rounded-lg shadow"
       >
         <h2 className="text-2xl font-bold text-center">Login</h2>
-        <h1>{state.message}</h1>
+        {state.message && (
+          <p className="text-red-600 font-semibold text-sm bg-red-500/15 p-2 rounded-md shadow-sm capitalize">
+            {state.message}
+          </p>
+        )}
+
         <input
           type="text"
           name="username"
