@@ -1,13 +1,24 @@
 "use client";
 
+import { redirect, useRouter } from "next/navigation";
+import { useAuth } from "../provider/AuthProvider";
 import { handleLogin } from "./actions";
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 
 export default function LoginPage() {
+  const { setIsLoggedIn } = useAuth();
+  const router = useRouter();
+
   const initialState = {
     message: "",
   };
   const [state, formAction] = useActionState(handleLogin, initialState);
+
+  useEffect(() => {
+    state.message === "isLoggedIn" && (setIsLoggedIn(true), redirect("/blog"));
+
+    return () => {};
+  }, [state.message]);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">

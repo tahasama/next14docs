@@ -26,6 +26,6 @@ export const handleLogin = async (prevState: any,formData: FormData) => {
       return {message:error};
     } else {
       const ccc = (await cookies()).set("authToken", "Success");
-      redirect("/blog");
+      return {message:'isLoggedIn'}
     }
   };

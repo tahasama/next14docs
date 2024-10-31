@@ -1,4 +1,5 @@
 // middleware.ts
+import { revalidatePath } from 'next/cache';
 import { NextResponse,NextRequest } from 'next/server';
 
 export function middleware(req: NextRequest) {
@@ -9,6 +10,7 @@ export function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL('/login', req.url));
   }
 
+  
   return NextResponse.next();
 }
 
