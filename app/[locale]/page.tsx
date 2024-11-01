@@ -1,10 +1,22 @@
+import { useTranslations } from "next-intl";
 import Image from "next/image";
+import Link from "next/link";
 
-export default function Home() {
+interface Params {
+  lang: string;
+}
+
+export default function Home({ params: { lang } }: { params: Params }) {
+  const t = useTranslations("HomePage");
+
   return (
     <div className="grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-[calc(100vh-28px)]  text-gray-800 p-8 pb-20 gap-6 sm:p-10 font-[family-name:var(--font-geist-sans)]">
       <header className="flex flex-col items-center text-center space-y-4">
         <h1 className="text-4xl font-bold text-gray-700">My Website</h1>
+        <div>
+          <h1>{t("title")}</h1>
+          <Link href="/about">{t("about")}</Link>
+        </div>
       </header>
 
       <main className="space-y-6 text-center max-w-2xl border-2 border-slate-700 border-b-slate-600  rounded-lg p-4">

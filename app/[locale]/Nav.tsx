@@ -1,11 +1,13 @@
-"use client";
+// "use client";
 import React from "react";
 import Logout from "./(logout)/Logout";
 import { CiUser } from "react-icons/ci";
 import Dropdown from "./Dropdown";
 import Link from "next/link";
+import Translate from "./Translate";
+import { Params } from "./layout";
 
-function Nav() {
+async function Nav({ locale }: Params) {
   return (
     <nav className="text-center flex gap-10  w-3/7 capitalize text-lg text-gray-400 ">
       <Link
@@ -26,6 +28,7 @@ function Nav() {
       >
         blog
       </Link>
+      <Translate locale={locale} />
       <div className="grid place-items-center cursor-pointer hover:text-gray-700 transition ease-in-out delay-50">
         <Dropdown />
       </div>
