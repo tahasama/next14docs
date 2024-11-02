@@ -6,6 +6,7 @@ import Setting from "./settings/page";
 async function page() {
   return (
     <div>
+      BROOOOOOOOO
       <Suspense fallback={<Loading />}>
         <Analytics />
       </Suspense>
