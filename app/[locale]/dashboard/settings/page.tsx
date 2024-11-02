@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
+import Thread from "./Thread";
+import { deliverMessage } from "./actions";
 
-async function Setting() {
-  await new Promise((resolve) => setTimeout(resolve, 1500));
-  return <div>Setting</div>;
+function Setting() {
+  return (
+    <>
+      Setting
+      <Thread />
+    </>
+  );
 }
-
 export default Setting;

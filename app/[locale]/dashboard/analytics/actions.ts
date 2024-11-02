@@ -1,4 +1,3 @@
-'use server'
 
 let likesCount=0
 const incrementLike = async () => {
