@@ -2,13 +2,7 @@ import React, { Suspense } from "react";
 import Loading from "../loading";
 import { notFound } from "next/navigation";
 
-interface PageProps {
-  params: {
-    slug: string;
-  };
-}
-
-async function fetchPost(slug: string): Promise<string | null> {
+async function fetchPost(slug: any) {
   //   await new Promise<void>((resolve) => setTimeout(resolve, 2000));
   const validSlugs = ["dude", "hello", "example"];
   const foundSlugs = ["dude", "hi", "post"];
@@ -21,9 +15,7 @@ async function fetchPost(slug: string): Promise<string | null> {
   return foundSlugs.includes(slug) ? slug : null;
 }
 
-export default async function Page({
-  params,
-}: PageProps): Promise<JSX.Element> {
+export default async function Page({ params }: any) {
   const { slug } = params;
   const post = await fetchPost(slug);
 

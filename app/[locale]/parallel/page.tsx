@@ -1,14 +1,6 @@
 import React from "react";
 
-const page = ({
-  children,
-  team,
-  home,
-}: {
-  children: React.ReactNode;
-  home: React.ReactNode;
-  team: React.ReactNode;
-}) => {
+const page = () => {
   return <div className="text-center pt-5">Parallel</div>;
 };
 

@@ -1,10 +1,9 @@
 "use client";
 import React, { ChangeEvent } from "react";
-import { Params } from "./layout";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 
-const Translate = ({ locale }: Params) => {
+const Translate = ({ locale }: any) => {
   console.log("🚀 ~ Translate ~ locale:", locale);
   const router = useRouter();
   const pathname = usePathname();

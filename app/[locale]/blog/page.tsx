@@ -1,12 +1,6 @@
 import { revalidatePath } from "next/cache";
 
-interface Post {
-  id: number;
-  title: string;
-  content: string;
-}
-
-async function fetchPosts(): Promise<Post[]> {
+async function fetchPosts() {
   await new Promise((resolve) => setTimeout(resolve, 1000));
 
   const response = await fetch("http://localhost:3000/api/posts");
@@ -21,7 +15,7 @@ const PostsComponent: React.FC = async () => {
 
   const handleSubmit = async (formData: FormData) => {
     "use server";
-    const newPost: Post = {
+    const newPost = {
       id: 0,
       title: formData.get("title") as string,
       content: formData.get("content") as string,
@@ -46,7 +40,7 @@ const PostsComponent: React.FC = async () => {
     <div className="bg-gray-900 text-white p-6 rounded-lg mx-auto min-h-[calc(100vh-28px)]">
       <h1 className="text-2xl font-bold text-center mb-4">Posts</h1>
       <ul className="list-none p-0">
-        {posts.map((post) => (
+        {posts.map((post: any) => (
           <li key={post.id} className="mb-4 p-4 bg-gray-800 rounded-md">
             <h2 className="text-xl font-semibold">{post.title}</h2>
             <p className="mt-2">{post.content}</p>
